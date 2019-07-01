@@ -138,5 +138,22 @@ public class BeatBox {
         } catch(Exception e) {e.printStackTrace(); }
         return event;
     }
+    public class MySendListener implements actionListener {
+        public void actionPerformed(ActionEvent a) {
+            boolean[] checkboxState = new boolean[256];
+            for (int i = 0; i < 256; i++) {
+              JCheckBox check = (JCheckBox) checkBoxList.get(i);
+              if (check.isSelected()) {
+                 checkboxState[i] = true;
+            }
+        }
+            try {
+               FileOutputStream fileStream = new FileOutputStream(new File("CheckBox.ser"));
+               ObjectOutputStream os = new ObjectOutputStream(fileStream);
+               os.writeObject(checkboxState);
+            } catch(Exception ex) {
+               ex.printStackTrace();
+            }
+    }
 }
 
